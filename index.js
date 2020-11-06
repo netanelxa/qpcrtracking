@@ -1,6 +1,4 @@
-finishArray = [];
 alreadyInserted = [];
-
 var interval = 250;
 var durationMix = 300000;
 var durationOrder = 5000;
@@ -18,7 +16,7 @@ function toggle(element, flag, elapsed) {
   if (flag == 1) {
     duration = durationMix;
   }
-  if (elapsed < duration)
+  if ((elapsed < duration) && flag != 0)
     setTimeout(function () {
       toggle(element, flag, elapsed);
     }, interval);
@@ -40,15 +38,17 @@ function highlightClock(elapsed) {
 }
 
 function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
-  var t = setTimeout(startTime, 1000);
-  var centerTime = document.getElementById('clock').innerHTML;
+  var currentTime = document.getElementById('clock').innerHTML = new Date().toLocaleTimeString();
+  if (currentTime.endsWith('00')) {
+    checkTimer();
+  }
+  setTimeout(startTime, 1000);
+}
+
+//Compare the central clock with the table cells clock
+function checkTimer() {
+  //compare only hour and minutes
+  var centerTime = document.getElementById('clock').innerHTML.slice(0, -3);
   for (var i = 1; i <= 8; i++) {
     var mixTime = document.getElementById('MixTime' + i).value;
     if (mixTime === centerTime) {
@@ -58,7 +58,6 @@ function startTime() {
       var element = document.getElementById('MixTime' + i);
       toggle(element, 1, elapsed);
       $(".MixTime" + i).removeClass("highlight1")
-
     }
   }
   // Finished Plates - Blink and Show Name near clock
@@ -67,9 +66,7 @@ function startTime() {
     var orderAgainTime = element.value;
     if (orderAgainTime === centerTime) {
       var elapsed = 0;
-      finishArray.push(createFinishString(i));
-      //displayFinishString();
-      document.getElementById("imgpcr"+i).src = 'flag.png';
+      document.getElementById("imgpcr" + i).src = 'flag.png';
       toggle(element, 2, elapsed);
       element.className = "form-control-plaintext"
       highlightClock(elapsed)
@@ -77,7 +74,8 @@ function startTime() {
   }
 }
 
-function checkTime(i) {
+//if the number is one-digit - zero wil be added.
+function fixDigitsFormat(i) {
   if (i < 10) {
     i = "0" + i
   };
@@ -85,13 +83,14 @@ function checkTime(i) {
 }
 startTime();
 
+//Parsing the short hour string format.
 function dateToString(d) {
   var h = d.getHours();
   var m = d.getMinutes();
   var s = d.getSeconds();
-  m = checkTime(m);
-  s = checkTime(s);
-  var time = h + ":" + m + ":" + s;
+  m = fixDigitsFormat(m);
+  s = fixDigitsFormat(s);
+  var time = h + ":" + m;
   return time;
 }
 
@@ -101,6 +100,7 @@ function setDates(i, numberOfPlates) {
   alreadyInserted.push(i);
   var d = new Date(); // for now
   var newdate = dateToString(d);
+  // For One Plate QPCRs
   if (numberOfPlates == 1) {
     //Start Time
     document.querySelector('#startTime' + i).value = newdate;
@@ -120,6 +120,7 @@ function setDates(i, numberOfPlates) {
     var newDateObj = moment(startpcr).add(40, 'm').toDate();
     newdate = dateToString(newDateObj);
     document.querySelector('#OrderAgain' + i).value = newdate;
+    // For Two Plates QPCRs
   } else if (numberOfPlates == 2) {
     //Start Time
     document.querySelector('#startTime' + i).value = newdate;
@@ -143,37 +144,30 @@ function setDates(i, numberOfPlates) {
 }
 
 
+//Create listener for each one table.
 for (var i = 1; i <= 8; i++) {
-  document.querySelector('#plateID' + i).addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        var lastdigit = this.id;
-        pcrID=lastdigit.slice(-1);
-        document.getElementById('imgpcr'+pcrID).src = 'running.png';
-          const index = alreadyInserted.indexOf(pcrID);
-          if (index > -1) {
-            finishArray.splice(index, 1);
-            removeImage(createFinishString(pcrID))
-            document.getElementById("OrderAgain" + pcrID).className = "form-control-plaintext"
-          }
-          if (pcrID > 0 && pcrID <= 4)
-            setDates(pcrID, 2);
-          else if (pcrID > 4 && pcrID <= 8)
-            setDates(pcrID, 1);
-        }
-      });
-  };
-
-  function createFinishString(index) {
-    return "imgpcr" + index;
-  }
-
-  function displayFinishString() {
-    for (i = 0; i < finishArray.length; i++) {
-      document.getElementById(finishArray[i]).className = "displayimage";
+  //Listening on Enter Key press
+  document.querySelector('#plateID' + i).addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      //get the number of the table
+      var lastdigit = this.id;
+      pcrID = lastdigit.slice(-1);
+      //change the image logo to 'running' status
+      document.getElementById('imgpcr' + pcrID).src = 'running.png';
+      //check if there were already an item in this table
+      //if yes - reseting the green color of the cell and the image
+      const index = alreadyInserted.indexOf(pcrID);
+      if (index > -1) {
+        document.getElementById("imgpcr" + pcrID).src = 'running.png';
+        document.getElementById("OrderAgain" + pcrID).className = "form-control-plaintext"
+        toggle(document.getElementById("MixTime" + pcrID), 0, 0);
+        document.getElementById("MixTime" + pcrID).className = "form-control-plaintext"
+      }
+      //Different times for QPCR 1-4 (Two plates) and QPCR 4-8 (One Plate)
+      if (pcrID > 0 && pcrID <= 4)
+        setDates(pcrID, 2);
+      else if (pcrID > 4 && pcrID <= 8)
+        setDates(pcrID, 1);
     }
-  }
-
-  function removeImage(element) {
-    document.getElementById(element).src = 'running.png';
-
-  }
+  });
+};

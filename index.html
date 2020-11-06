@@ -13,7 +13,7 @@
 
 <body>
   <!-- Image and text -->
-  <nav class="navbar navbar-light navbar-expand-sm"  style="background-color: rgb(89, 89, 89);">
+  <nav class="navbar navbar-light navbar-expand-sm" style="background-color: rgb(89, 89, 89);">
     <a class="navbar-brand navbar-expand-sm" href="#">
       <img src="1.png" width="80" height="80" class="d-inline-block align-top" alt="" id=mhimg>
     </a>
@@ -27,6 +27,8 @@
         <table class="table table-sm table-dark">
           <thead>
             <tr>
+              <h5>Two Plates QPCRs</h5>
+              <th scope="col">#</th>
               <th scope="col">Plate ID</th>
               <th scope="col">Start</th>
               <th scope="col">Mix</th>
@@ -37,6 +39,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="pcr_num"> <input type="text" readonly class="form-control-plaintext " id="" value="1"> </td>
               <th scope="row"><input class="form-control" type="text" placeholder="Insert Plate #" id="plateID1"> </th>
               <td> <input type="text" readonly class="form-control-plaintext" id="startTime1" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="MixTime1" value=""></td>
@@ -51,6 +54,7 @@
         <table class="table table-sm table-dark">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Plate ID</th>
               <th scope="col">Start</th>
               <th scope="col">Mix</th>
@@ -61,6 +65,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="pcr_num"> <input type="text" readonly class="form-control-plaintext " id="" value="2"> </td>
               <th scope="row"><input class="form-control" type="text" placeholder="Insert Plate #" id="plateID2"> </th>
               <td> <input type="text" readonly class="form-control-plaintext" id="startTime2" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="MixTime2" value=""></td>
@@ -68,13 +73,13 @@
               <td> <input type="text" readonly class="form-control-plaintext" id="ENDQPCR2" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="OrderAgain2" value=""> </td>
             </tr>
-
           </tbody>
         </table>
 
         <table class="table table-sm table-dark">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Plate ID</th>
               <th scope="col">Start</th>
               <th scope="col">Mix</th>
@@ -85,6 +90,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="pcr_num"> <input type="text" readonly class="form-control-plaintext " id="" value="3"> </td>
               <th scope="row"><input class="form-control" type="text" placeholder="Insert Plate #" id="plateID3"> </th>
               <td> <input type="text" readonly class="form-control-plaintext" id="startTime3" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="MixTime3" value=""></td>
@@ -99,6 +105,7 @@
         <table class="table table-sm table-dark">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Plate ID</th>
               <th scope="col">Start</th>
               <th scope="col">Mix</th>
@@ -109,6 +116,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="pcr_num"> <input type="text" readonly class="form-control-plaintext " id="" value="4"> </td>
               <th scope="row"><input class="form-control" type="text" placeholder="Insert Plate #" id="plateID4"> </th>
               <td> <input type="text" readonly class="form-control-plaintext" id="startTime4" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="MixTime4" value=""></td>
@@ -122,9 +130,11 @@
 
       </div>
       <div class="col-sm-2">
-          <div class="row"><div id="clock"></div>  </div>
-          <div class="finishedTables">
-            <h5>Two Plates</h5>
+        <div class="row">
+          <div id="clock"></div>
+        </div>
+        <div class="finishedTables">
+          <h5>Two Plates</h5>
           <table class="table table-bordered finishedtable table-sm">
             <thead class="thead-light">
               <tr>
@@ -143,10 +153,10 @@
               </tr>
             </tbody>
           </table>
-          <h5>One Plate</h5>
           <table class="table table-bordered finishedtable table-sm">
             <thead class="thead-light">
               <tr>
+                <h5>One Plate</h5>
                 <th scope="col">QPCR1</th>
                 <th scope="col">QPCR2</th>
                 <th scope="col">QPCR3</th>
@@ -167,7 +177,9 @@
       <div class="col-sm-5">
         <table class="table table-sm table-dark tleft">
           <thead>
+            <h5>One Plate QPCRs</h5>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Plate ID</th>
               <th scope="col">Start</th>
               <th scope="col">Mix</th>
@@ -178,6 +190,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="pcr_num"> <input type="text" readonly class="form-control-plaintext " id="" value="1"> </td>
               <th scope="row"><input class="form-control" type="text" placeholder="Insert Plate #" id="plateID5"> </th>
               <td> <input type="text" readonly class="form-control-plaintext" id="startTime5" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="MixTime5" value=""></td>
@@ -192,6 +205,7 @@
         <table class="table table-sm table-dark tleft">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Plate ID</th>
               <th scope="col">Start</th>
               <th scope="col">Mix</th>
@@ -202,6 +216,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="pcr_num"> <input type="text" readonly class="form-control-plaintext " id="" value="2"> </td>
               <th scope="row"><input class="form-control" type="text" placeholder="Insert Plate #" id="plateID6"> </th>
               <td> <input type="text" readonly class="form-control-plaintext" id="startTime6" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="MixTime6" value=""></td>
@@ -209,13 +224,12 @@
               <td> <input type="text" readonly class="form-control-plaintext" id="ENDQPCR6" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="OrderAgain6" value=""> </td>
             </tr>
-
           </tbody>
         </table>
-
         <table class="table table-sm table-dark tleft">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Plate ID</th>
               <th scope="col">Start</th>
               <th scope="col">Mix</th>
@@ -226,6 +240,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="pcr_num"> <input type="text" readonly class="form-control-plaintext " id="" value="3"> </td>
               <th scope="row"><input class="form-control" type="text" placeholder="Insert Plate #" id="plateID7"> </th>
               <td> <input type="text" readonly class="form-control-plaintext" id="startTime7" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="MixTime7" value=""></td>
@@ -233,12 +248,12 @@
               <td> <input type="text" readonly class="form-control-plaintext" id="ENDQPCR7" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="OrderAgain7" value=""> </td>
             </tr>
-
           </tbody>
         </table>
         <table class="table table-sm table-dark tleft">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Plate ID</th>
               <th scope="col">Start</th>
               <th scope="col">Mix</th>
@@ -249,6 +264,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="pcr_num"> <input type="text" readonly class="form-control-plaintext " id="" value="4"> </td>
               <th scope="row"><input class="form-control" type="text" placeholder="Insert Plate #" id="plateID8"> </th>
               <td> <input type="text" readonly class="form-control-plaintext" id="startTime8" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="MixTime8" value=""></td>
@@ -256,11 +272,8 @@
               <td> <input type="text" readonly class="form-control-plaintext" id="ENDQPCR8" value=""> </td>
               <td> <input type="text" readonly class="form-control-plaintext" id="OrderAgain8" value=""> </td>
             </tr>
-
           </tbody>
         </table>
-
-
       </div>
     </div>
   </div>
@@ -269,4 +282,5 @@
   <script src="jquery-3.5.1.min.js"></script>
   <script src="moment.min.js"></script>
 </body>
+
 </html>

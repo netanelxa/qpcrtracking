@@ -30,6 +30,7 @@ height: 80px;
 
 .form-control-plaintext{
     color: white;
+    text-align: center;
 }
 
 .table{
@@ -84,6 +85,8 @@ height: 80px;
 }
 h5{
     margin-left: 20px;
+    text-align:center;
+    margin-bottom: 1px;
 }
 
 .displayimage{
@@ -103,4 +106,12 @@ h5{
 .col-sm-2{
     margin-left: -3% ;
     margin-right: 3%;
+}
+.pcr_num{
+    width:0.1%;
+    white-space: nowrap;
+}
+
+.td,th{
+    text-align: center;
 }
